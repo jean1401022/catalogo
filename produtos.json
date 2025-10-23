@@ -3,5 +3,10 @@
     "nome": "New Balance 9070",
     "preco": "399,90",
     "imagem": "https://raw.githubusercontent.com/jean1401022/catalogo/refs/heads/main/imagens/0992f969-41a1-467f-9d80-7edac94c7ff8.jpeg"
+  },
+  {
+    "nome": "Novo Produto",
+    "preco": "349,90",
+    "imagem": "https://raw.githubusercontent.com/jean1401022/catalogo/refs/heads/main/imagens/0f5317de-9cfb-4cb1-add1-9f1b688ebd53.jpeg"
   }
 ]
