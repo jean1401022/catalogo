@@ -1,7 +1,22 @@
 [
   {
-    "nome": "Produto Exemplo",
-    "preco": "R$ 0,00",
+    "nome": "New Balance 9070",
+    "preco": "R$ 499,90",
     "imagem": "https://raw.githubusercontent.com/jean1401022/catalogo/refs/heads/main/imagens/0f5317de-9cfb-4cb1-add1-9f1b688ebd53.jpeg"
+  },
+  {
+    "nome": "Tênis Web Exemplo",
+    "preco": "R$ 399,90",
+    "imagem": "https://example.com/imagem-do-tenis.jpg"
+  },
+  {
+    "nome": "Outro Produto GitHub",
+    "preco": "R$ 299,90",
+    "imagem": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/outroproduto.jpg"
+  },
+  {
+    "nome": "Produto Extra",
+    "preco": "R$ 199,90",
+    "imagem": "https://example.com/imagem-extra.jpg"
   }
 ]
