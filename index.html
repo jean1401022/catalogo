@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Varied Store</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: "Poppins", Arial, sans-serif;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #111;
+    }
+
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .produto {
+      background-color: #fff;
+      border-radius: 14px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .produto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .slider img, .slider video {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: none;
+    }
+
+    .slider img.active, .slider video.active {
+      display: block;
+    }
+
+    .slider button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .info {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 10px 18px;
+      background-color: #25d366;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .botao:hover {
+      background-color: #1da851;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Varied Store</h1>
+    <p>Moda, conforto e estilo para todos</p>
+  </header>
+
+  <section id="catalogo" class="catalogo"></section>
+
+  <script>
+    const catalogoContainer = document.getElementById('catalogo');
+    const catalogo = JSON.parse(localStorage.getItem('catalogoVaried') || '[]');
+
+    if (catalogo.length === 0) {
+      catalogoContainer.innerHTML = "<p style='text-align:center;'>Nenhum produto adicionado ainda.</p>";
+    } else {
+      catalogo.forEach((produto) => {
+        const midiasHTML = produto.midias.map((m, idx) => {
+          if (m.tipo === 'imagem') {
+            return `<img src="${m.src}" class="${idx === 0 ? 'active' : ''}">`;
+          } else {
+            return `<video src="${m.src}" class="${idx === 0 ? 'active' : ''}" controls></video>`;
+          }
+        }).join('');
+
+        const produtoHTML = `
+          <div class="produto">
+            <div class="slider">
+              ${midiasHTML}
+              <button class="prev" onclick="mudarSlide(this, -1)">&#10094;</button>
+              <button class="next" onclick="mudarSlide(this, 1)">&#10095;</button>
+            </div>
+            <div class="info">
+              <h2>${produto.nome}</h2>
+              <p>${produto.descricao}</p>
+              <a href="https://chat.whatsapp.com/GHe6KQ9O4ObLeokCzcuBDL" class="botao" target="_blank">Entrar no Grupo</a>
+            </div>
+          </div>
+        `;
+        catalogoContainer.innerHTML += produtoHTML;
+      });
+    }
+
+    function mudarSlide(botao, direcao) {
+      const slider = botao.parentElement;
+      const midias = slider.querySelectorAll('img, video');
+      let indiceAtivo = Array.from(midias).findIndex(m => m.classList.contains('active'));
+      midias[indiceAtivo].classList.remove('active');
+      midias[indiceAtivo].pause?.();
+      let novoIndice = indiceAtivo + direcao;
+      if (novoIndice < 0) novoIndice = midias.length - 1;
+      if (novoIndice >= midias.length) novoIndice = 0;
+      midias[novoIndice].classList.add('active');
+      if (midias[novoIndice].tagName === 'VIDEO') midias[novoIndice].play();
+    }
+  </script>
+</body>
+</html>
