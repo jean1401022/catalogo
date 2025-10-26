@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Varied</title>
+  <title>Catálogo Varied Store</title>
   <style>
     body {
       background-color: #f5f5f5;
       font-family: "Poppins", Arial, sans-serif;
       padding: 20px;
+      margin: 0;
     }
 
     header {
@@ -19,6 +20,10 @@
     header h1 {
       font-size: 2rem;
       color: #111;
+    }
+
+    header p {
+      color: #555;
     }
 
     .catalogo {
@@ -78,6 +83,18 @@
       text-align: center;
     }
 
+    .info h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .info p {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
     .botao {
       display: inline-block;
       padding: 10px 18px;
@@ -86,6 +103,7 @@
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      transition: background-color 0.2s ease;
     }
 
     .botao:hover {
@@ -103,37 +121,49 @@
   <section id="catalogo" class="catalogo"></section>
 
   <script>
-    const catalogoContainer = document.getElementById('catalogo');
-    const catalogo = JSON.parse(localStorage.getItem('catalogoVaried') || '[]');
+    async function carregarCatalogo() {
+      try {
+        const resposta = await fetch('produtos.json');
+        const catalogo = await resposta.json();
+        renderizarCatalogo(catalogo);
+      } catch (erro) {
+        console.error("Erro ao carregar catálogo:", erro);
+        document.getElementById('catalogo').innerHTML = "<p style='text-align:center;'>Erro ao carregar os produtos.</p>";
+      }
+    }
 
-    if (catalogo.length === 0) {
-      catalogoContainer.innerHTML = "<p style='text-align:center;'>Nenhum produto adicionado ainda.</p>";
-    } else {
-      catalogo.forEach((produto) => {
-        const midiasHTML = produto.midias.map((m, idx) => {
-          if (m.tipo === 'imagem') {
-            return `<img src="${m.src}" class="${idx === 0 ? 'active' : ''}">`;
-          } else {
-            return `<video src="${m.src}" class="${idx === 0 ? 'active' : ''}" controls></video>`;
-          }
-        }).join('');
+    function renderizarCatalogo(catalogo) {
+      const catalogoContainer = document.getElementById('catalogo');
 
-        const produtoHTML = `
-          <div class="produto">
-            <div class="slider">
-              ${midiasHTML}
-              <button class="prev" onclick="mudarSlide(this, -1)">&#10094;</button>
-              <button class="next" onclick="mudarSlide(this, 1)">&#10095;</button>
+      if (catalogo.length === 0) {
+        catalogoContainer.innerHTML = "<p style='text-align:center;'>Nenhum produto adicionado ainda.</p>";
+      } else {
+        catalogo.forEach((produto) => {
+          const midiasHTML = produto.midias.map((m, idx) => {
+            if (m.tipo === 'imagem') {
+              return `<img src="${m.src}" class="${idx === 0 ? 'active' : ''}">`;
+            } else {
+              return `<video src="${m.src}" class="${idx === 0 ? 'active' : ''}" controls></video>`;
+            }
+          }).join('');
+
+          const produtoHTML = `
+            <div class="produto">
+              <div class="slider">
+                ${midiasHTML}
+                <button class="prev" onclick="mudarSlide(this, -1)">&#10094;</button>
+                <button class="next" onclick="mudarSlide(this, 1)">&#10095;</button>
+              </div>
+              <div class="info">
+                <h2>${produto.nome}</h2>
+                <p>${produto.descricao}</p>
+                <a href="https://chat.whatsapp.com/GHe6KQ9O4ObLeokCzcuBDL" class="botao" target="_blank">Entrar no Grupo</a>
+              </div>
             </div>
-            <div class="info">
-              <h2>${produto.nome}</h2>
-              <p>${produto.descricao}</p>
-              <a href="https://chat.whatsapp.com/GHe6KQ9O4ObLeokCzcuBDL" class="botao" target="_blank">Entrar no Grupo</a>
-            </div>
-          </div>
-        `;
-        catalogoContainer.innerHTML += produtoHTML;
-      });
+          `;
+          catalogoContainer.innerHTML += produtoHTML;
+        });
+      }
     }
 
     function mudarSlide(botao, direcao) {
@@ -142,14 +172,17 @@
       let indiceAtivo = Array.from(midias).findIndex(m => m.classList.contains('active'));
       midias[indiceAtivo].classList.remove('active');
       midias[indiceAtivo].pause?.();
+
       let novoIndice = indiceAtivo + direcao;
       if (novoIndice < 0) novoIndice = midias.length - 1;
       if (novoIndice >= midias.length) novoIndice = 0;
+
       midias[novoIndice].classList.add('active');
       if (midias[novoIndice].tagName === 'VIDEO') midias[novoIndice].play();
     }
+
+    carregarCatalogo();
   </script>
+
 </body>
 </html>
-
-
