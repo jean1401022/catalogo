@@ -1,15 +1,72 @@
-{
-  "produtos": [
-    {
-      "id": 1,
-      "nome": "Produto Exemplo",
-      "descricao": "Descrição detalhada do produto, destacando características e benefícios.",
-      "preco": 49.90,
-      "moeda": "BRL",
-      "categoria": "Exemplo",
-      "imagem": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/0f5317de-9cfb-4cb1-add1-9f1b688ebd53.jpeg",
-      "estoque": 100,
-      "tags": ["novo", "promoção", "destaque"]
-    }
-  ]
-}
+[
+  {
+    "nome": "Tênis Nike Air Max",
+    "descricao": "Conforto e estilo para o seu dia a dia. Solado com amortecimento e design moderno.",
+    "midias": [
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/tenis-nike1.jpg"
+      },
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/tenis-nike2.jpg"
+      }
+    ]
+  },
+  {
+    "nome": "Bolsa Feminina Couro Premium",
+    "descricao": "Bolsa elegante com acabamento de alta qualidade. Ideal para o dia a dia ou eventos especiais.",
+    "midias": [
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/bolsa-couro1.jpg"
+      },
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/bolsa-couro2.jpg"
+      }
+    ]
+  },
+  {
+    "nome": "Camiseta Oversized Masculina",
+    "descricao": "Camiseta 100% algodão com corte solto e gola reforçada. Conforto e estilo streetwear.",
+    "midias": [
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/camiseta1.jpg"
+      },
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/camiseta2.jpg"
+      }
+    ]
+  },
+  {
+    "nome": "Relógio Smartwatch Series 8",
+    "descricao": "Monitore sua saúde, passos e notificações com estilo. Compatível com Android e iPhone.",
+    "midias": [
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/smartwatch1.jpg"
+      },
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/smartwatch2.jpg"
+      }
+    ]
+  },
+  {
+    "nome": "Sandália Slide Conforto",
+    "descricao": "Sandália unissex, super leve e confortável. Ideal para casa, praia ou academia.",
+    "midias": [
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/slide1.jpg"
+      },
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/slide2.jpg"
+      }
+    ]
+  }
+]
