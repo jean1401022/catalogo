@@ -66,6 +66,18 @@
       {
         "tipo": "imagem",
         "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/slide2.jpg"
+      },
+      {
+    "nome": "Sandália Slide Conforto",
+    "descricao": "Sandália unissex, super leve e confortável. Ideal para casa, praia ou academia.",
+    "midias": [
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/slide1.jpg"
+      },
+      {
+        "tipo": "imagem",
+        "src": "https://raw.githubusercontent.com/jean1401022/catalogo/main/imagens/slide2.jpg"
       }
     ]
   }
